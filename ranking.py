@@ -1,3 +1,5 @@
+import datetime
+
 #Used to determine how much a single game will change each player's rating
 RANKING_CONSTANT = 50
 
@@ -56,6 +58,12 @@ def calculateRankings(p1, p2):
 
     f = open("rankings.txt", "w")
     f.writelines(players)
+    f.close()
+
+    #Updating the game history
+    x=datetime.datetime.now()
+    f = open("gameHistory.txt", "a")
+    f.write(p1["name"] + " defeats " + p2["name"] + " on " + x.strftime("%x") + "\n")
     f.close()
 
 #Adds a new player with an inital rating of 1000
