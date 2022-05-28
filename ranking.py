@@ -86,4 +86,18 @@ elif selection == "2":
     getMatchData()
 else:
     playerList = getPlayerList()
-    print(playerList)
+
+    line = "{:6} {:30} {:10} {:40}"
+    print("\n" + line.format("Rank", "Name", "Rating", "Email"))
+    print("-"*86)
+
+    def sortFunc(p):
+        return float(p["rating"])
+
+    playerList.sort(key = sortFunc, reverse=True)
+
+    rank = 1
+
+    for player in playerList:
+        print(line.format(str(rank), player["name"], str(round(float(player["rating"]))), player["email"]))
+        rank += 1
